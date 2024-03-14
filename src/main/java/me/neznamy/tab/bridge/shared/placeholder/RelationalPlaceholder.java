@@ -35,12 +35,6 @@ public class RelationalPlaceholder extends Placeholder {
             viewer.sendPluginMessage(new PlaceholderError("Relational placeholder " + identifier +
                     " generated an error when setting for viewer " + viewer.getName() + " and target " + target.getName(), t));
             return "<PlaceholderAPI Error>";
-        } finally {
-            long timeDiff = System.currentTimeMillis() - time;
-            if (timeDiff > 50) {
-                TABBridge.getInstance().getPlatform().sendConsoleMessage("&c[WARN] Placeholder " + identifier +
-                        " took " + timeDiff + "ms to return value for " + viewer.getName() + " and " + target.getName());
-            }
         }
     }
 

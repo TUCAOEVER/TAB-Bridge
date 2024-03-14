@@ -28,17 +28,11 @@ public class PlayerPlaceholder extends Placeholder {
     }
 
     private String request(BridgePlayer player) {
-        long time = System.currentTimeMillis();
         try {
             return function.apply(player);
         } catch (Throwable t) {
             player.sendPluginMessage(new PlaceholderError("Player placeholder " + identifier + " generated an error when setting for player " + player.getName(), t));
             return "<PlaceholderAPI Error>";
-        } finally {
-            long timeDiff = System.currentTimeMillis() - time;
-            if (timeDiff > 50) {
-                TABBridge.getInstance().getPlatform().sendConsoleMessage("&c[WARN] Placeholder " + identifier + " took " + timeDiff + "ms to return value for " + player.getName());
-            }
         }
     }
 

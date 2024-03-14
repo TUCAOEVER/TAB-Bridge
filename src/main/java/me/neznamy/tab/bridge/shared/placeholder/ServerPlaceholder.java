@@ -27,7 +27,6 @@ public class ServerPlaceholder extends Placeholder {
     }
 
     private String request() {
-        long time = System.currentTimeMillis();
         try {
             return function.get();
         } catch (Throwable t) {
@@ -36,11 +35,6 @@ public class ServerPlaceholder extends Placeholder {
                 first.sendPluginMessage(new PlaceholderError("Server placeholder " + identifier + " generated an error", t));
             }
             return "<PlaceholderAPI Error>";
-        } finally {
-            long timeDiff = System.currentTimeMillis() - time;
-            if (timeDiff > 50) {
-                TABBridge.getInstance().getPlatform().sendConsoleMessage("&c[WARN] Placeholder " + identifier + " took " + timeDiff + "ms to return value");
-            }
         }
     }
 
